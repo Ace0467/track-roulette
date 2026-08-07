@@ -68,6 +68,15 @@ export default function HomePage() {
             />
           )}
 
+          <div className="flex flex-col">
+            <p className="font-semibold text-neutral-50">{track.name}</p>
+            <p className="text-sm text-neutral-400">{track.artists.join(", ")}</p>
+            <p className="text-sm text-neutral-500">
+              {track.albumName}
+              {track.albumYear ? ` · ${track.albumYear}` : ""}
+            </p>
+          </div>
+
           <iframe
             title={`${track.name} — ${track.artists.join(", ")}`}
             style={{ borderRadius: 12 }}
@@ -77,15 +86,6 @@ export default function HomePage() {
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
           />
-
-          <a
-            href={`https://open.spotify.com/track/${track.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="self-center text-sm text-neutral-400 underline hover:text-neutral-200"
-          >
-            Abrir en Spotify
-          </a>
 
           {recommendations.length > 0 ? (
             <div className="flex flex-col gap-3 rounded-lg bg-neutral-900 px-4 py-3">
