@@ -63,7 +63,7 @@ export default function RecommendModal({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Error desconocido");
       setSuccess(true);
-      setTimeout(onSuccess, 1200);
+      setTimeout(onSuccess, 1500);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido");
     } finally {
