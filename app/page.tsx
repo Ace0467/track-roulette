@@ -56,13 +56,15 @@ export default function HomePage() {
   if (!started) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-6 text-center text-neutral-50">
-        <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
-        <button
-          onClick={() => setShowAbout(true)}
-          className="text-sm text-neutral-400 underline hover:text-neutral-200"
-        >
-          ¿Qué es esto y para qué sirve?
-        </button>
+        <div className="flex flex-col items-center gap-1.5">
+          <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
+          <button
+            onClick={() => setShowAbout(true)}
+            className="text-sm text-neutral-400 underline hover:text-neutral-200"
+          >
+            ¿Qué es esto y para qué sirve?
+          </button>
+        </div>
 
         <div className="hidden max-w-sm flex-col items-center gap-3 sm:flex">
           <p className="text-neutral-400">
@@ -97,13 +99,15 @@ export default function HomePage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-3 bg-neutral-950 p-6 text-neutral-50">
-      <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
-      <button
-        onClick={() => setShowAbout(true)}
-        className="text-sm text-neutral-400 underline hover:text-neutral-200"
-      >
-        ¿Qué es esto y para qué sirve?
-      </button>
+      <div className="flex flex-col items-center gap-1.5">
+        <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
+        <button
+          onClick={() => setShowAbout(true)}
+          className="text-sm text-neutral-400 underline hover:text-neutral-200"
+        >
+          ¿Qué es esto y para qué sirve?
+        </button>
+      </div>
 
       {loading && <p className="text-neutral-400">Girando la ruleta...</p>}
       {error && <p className="text-red-400">{error}</p>}
