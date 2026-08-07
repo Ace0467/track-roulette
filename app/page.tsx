@@ -93,7 +93,7 @@ export default function HomePage() {
       {error && <p className="text-red-400">{error}</p>}
 
       {track && !loading && (
-        <div className="flex w-full max-w-sm flex-col gap-4">
+        <div className="flex w-full max-w-xs flex-col gap-4 sm:max-w-sm">
           {track.albumImage && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
