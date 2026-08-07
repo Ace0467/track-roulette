@@ -58,16 +58,34 @@ export default function HomePage() {
       {error && <p className="text-red-400">{error}</p>}
 
       {track && !loading && (
-        <div className="flex w-full max-w-md flex-col gap-4">
+        <div className="flex w-full max-w-sm flex-col gap-4">
+          {track.albumImage && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={track.albumImage}
+              alt={`Tapa de ${track.albumName}`}
+              className="aspect-square w-full rounded-xl object-cover"
+            />
+          )}
+
           <iframe
             title={`${track.name} — ${track.artists.join(", ")}`}
             style={{ borderRadius: 12 }}
             src={`https://open.spotify.com/embed/track/${track.id}?utm_source=generator&theme=0`}
             width="100%"
-            height="352"
+            height="152"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
           />
+
+          <a
+            href={`https://open.spotify.com/track/${track.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="self-center text-sm text-neutral-400 underline hover:text-neutral-200"
+          >
+            Abrir en Spotify
+          </a>
 
           {recommendations.length > 0 ? (
             <div className="flex flex-col gap-3 rounded-lg bg-neutral-900 px-4 py-3">
