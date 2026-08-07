@@ -15,6 +15,9 @@ export async function POST(request: Request) {
   if (!trackId || !trackUri || typeof trackId !== "string" || typeof trackUri !== "string") {
     return NextResponse.json({ error: "trackId y trackUri son requeridos" }, { status: 400 });
   }
+  if (name.length === 0) {
+    return NextResponse.json({ error: "Contanos tu nombre" }, { status: 400 });
+  }
   if (reason.length > MAX_REASON_LENGTH) {
     return NextResponse.json(
       { error: `El motivo es demasiado largo (máx. ${MAX_REASON_LENGTH} caracteres)` },
@@ -37,9 +40,7 @@ export async function POST(request: Request) {
     // Se agrega siempre como entrada nueva (sin chequear si ya está en el playlist),
     // así cada recomendación de una misma canción queda registrada por separado.
     await addTrackToPlaylist(playlistId, trackUri);
-    if (reason.length > 0 || name.length > 0) {
-      await addRecommendation(trackId, { name: name || undefined, reason: reason || undefined });
-    }
+    await addRecommendation(trackId, { name, reason: reason || undefined });
     await invalidatePlaylistCache(playlistId);
     return NextResponse.json({ ok: true });
   } catch (err) {

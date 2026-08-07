@@ -46,7 +46,7 @@ export default function RecommendModal({
   }, [query, selected]);
 
   async function handleSubmit() {
-    if (!selected) return;
+    if (!selected || !name.trim()) return;
     setSubmitting(true);
     setError(null);
     try {
@@ -123,7 +123,7 @@ export default function RecommendModal({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   maxLength={MAX_NAME_LENGTH}
-                  placeholder="Tu nombre (opcional)"
+                  placeholder="Tu nombre"
                   className="rounded-lg bg-neutral-800 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
                 />
                 <textarea
@@ -139,7 +139,7 @@ export default function RecommendModal({
                 {error && <p className="text-sm text-red-400">{error}</p>}
                 <button
                   onClick={handleSubmit}
-                  disabled={submitting}
+                  disabled={submitting || !name.trim()}
                   className="rounded-full bg-emerald-500 px-4 py-2 font-semibold text-black disabled:opacity-50"
                 >
                   {submitting ? "Agregando..." : "Agregar al playlist"}
