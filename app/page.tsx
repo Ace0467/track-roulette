@@ -126,7 +126,7 @@ export default function HomePage() {
             </div>
           ) : (
             <p className="rounded-lg bg-neutral-900 px-4 py-3 text-sm italic text-neutral-500">
-              Esta canción ya venía con la playlist.
+              Esta canción ya venía con la playlist, pero alguien ya te la va a recomendar.
             </p>
           )}
 
