@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { SpotifyTrack } from "@/lib/types";
 
 const MAX_REASON_LENGTH = 280;
+const MAX_NAME_LENGTH = 60;
 
 export default function RecommendModal({
   onClose,
@@ -16,6 +17,7 @@ export default function RecommendModal({
   const [results, setResults] = useState<SpotifyTrack[]>([]);
   const [searching, setSearching] = useState(false);
   const [selected, setSelected] = useState<SpotifyTrack | null>(null);
+  const [name, setName] = useState("");
   const [reason, setReason] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -44,7 +46,7 @@ export default function RecommendModal({
   }, [query, selected]);
 
   async function handleSubmit() {
-    if (!selected || !reason.trim()) return;
+    if (!selected) return;
     setSubmitting(true);
     setError(null);
     try {
@@ -54,6 +56,7 @@ export default function RecommendModal({
         body: JSON.stringify({
           trackId: selected.id,
           trackUri: selected.uri,
+          name: name.trim(),
           reason: reason.trim(),
         }),
       });
@@ -116,11 +119,18 @@ export default function RecommendModal({
 
             {selected && (
               <>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  maxLength={MAX_NAME_LENGTH}
+                  placeholder="Tu nombre (opcional)"
+                  className="rounded-lg bg-neutral-800 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                />
                 <textarea
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
                   maxLength={MAX_REASON_LENGTH}
-                  placeholder="¿Por qué la compartís?"
+                  placeholder="¿Por qué la compartís? (opcional)"
                   className="min-h-[100px] rounded-lg bg-neutral-800 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
                 />
                 <p className="text-right text-xs text-neutral-500">
@@ -129,7 +139,7 @@ export default function RecommendModal({
                 {error && <p className="text-sm text-red-400">{error}</p>}
                 <button
                   onClick={handleSubmit}
-                  disabled={submitting || !reason.trim()}
+                  disabled={submitting}
                   className="rounded-full bg-emerald-500 px-4 py-2 font-semibold text-black disabled:opacity-50"
                 >
                   {submitting ? "Agregando..." : "Agregar al playlist"}

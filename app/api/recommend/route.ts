@@ -1,24 +1,29 @@
 import { NextResponse } from "next/server";
 import { addTrackToPlaylist, invalidatePlaylistCache } from "@/lib/spotify";
-import { addReason } from "@/lib/redis";
+import { addRecommendation } from "@/lib/redis";
 
 const MAX_REASON_LENGTH = 280;
+const MAX_NAME_LENGTH = 60;
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   const trackId = body?.trackId;
   const trackUri = body?.trackUri;
   const reason = typeof body?.reason === "string" ? body.reason.trim() : "";
+  const name = typeof body?.name === "string" ? body.name.trim() : "";
 
   if (!trackId || !trackUri || typeof trackId !== "string" || typeof trackUri !== "string") {
     return NextResponse.json({ error: "trackId y trackUri son requeridos" }, { status: 400 });
   }
-  if (reason.length === 0) {
-    return NextResponse.json({ error: "Contanos por qué la recomendás" }, { status: 400 });
-  }
   if (reason.length > MAX_REASON_LENGTH) {
     return NextResponse.json(
       { error: `El motivo es demasiado largo (máx. ${MAX_REASON_LENGTH} caracteres)` },
+      { status: 400 }
+    );
+  }
+  if (name.length > MAX_NAME_LENGTH) {
+    return NextResponse.json(
+      { error: `El nombre es demasiado largo (máx. ${MAX_NAME_LENGTH} caracteres)` },
       { status: 400 }
     );
   }
@@ -29,8 +34,12 @@ export async function POST(request: Request) {
   }
 
   try {
+    // Se agrega siempre como entrada nueva (sin chequear si ya está en el playlist),
+    // así cada recomendación de una misma canción queda registrada por separado.
     await addTrackToPlaylist(playlistId, trackUri);
-    await addReason(trackId, reason);
+    if (reason.length > 0 || name.length > 0) {
+      await addRecommendation(trackId, { name: name || undefined, reason: reason || undefined });
+    }
     await invalidatePlaylistCache(playlistId);
     return NextResponse.json({ ok: true });
   } catch (err) {

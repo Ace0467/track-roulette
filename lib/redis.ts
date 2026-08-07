@@ -14,10 +14,11 @@ if (!url || !token) {
 export const redis = new Redis({ url: url ?? "", token: token ?? "" });
 
 const LIKES_KEY = (trackId: string) => `likes:${trackId}`;
-const REASONS_KEY = (trackId: string) => `reasons:${trackId}`;
+const RECOMMENDATIONS_KEY = (trackId: string) => `reasons:${trackId}`;
 
 export interface Recommendation {
-  reason: string;
+  name?: string;
+  reason?: string;
   addedAt: number;
 }
 
@@ -30,11 +31,14 @@ export async function incrementLikeCount(trackId: string): Promise<number> {
   return redis.incr(LIKES_KEY(trackId));
 }
 
-export async function addReason(trackId: string, reason: string): Promise<void> {
-  const entry: Recommendation = { reason, addedAt: Date.now() };
-  await redis.lpush(REASONS_KEY(trackId), entry);
+export async function addRecommendation(
+  trackId: string,
+  data: { name?: string; reason?: string }
+): Promise<void> {
+  const entry: Recommendation = { ...data, addedAt: Date.now() };
+  await redis.lpush(RECOMMENDATIONS_KEY(trackId), entry);
 }
 
-export async function getReasons(trackId: string): Promise<Recommendation[]> {
-  return redis.lrange<Recommendation>(REASONS_KEY(trackId), 0, -1);
+export async function getRecommendations(trackId: string): Promise<Recommendation[]> {
+  return redis.lrange<Recommendation>(RECOMMENDATIONS_KEY(trackId), 0, -1);
 }

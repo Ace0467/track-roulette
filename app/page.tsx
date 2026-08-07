@@ -1,12 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import type { SpotifyTrack } from "@/lib/types";
+import type { Recommendation, SpotifyTrack } from "@/lib/types";
 import RecommendModal from "@/components/RecommendModal";
 
 export default function HomePage() {
   const [track, setTrack] = useState<SpotifyTrack | null>(null);
   const [likes, setLikes] = useState(0);
+  const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [liking, setLiking] = useState(false);
@@ -21,6 +22,7 @@ export default function HomePage() {
       if (!res.ok) throw new Error(data.error ?? "Error desconocido");
       setTrack(data.track);
       setLikes(data.likes);
+      setRecommendations(data.recommendations ?? []);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido");
     } finally {
@@ -67,6 +69,25 @@ export default function HomePage() {
             loading="lazy"
           />
 
+          {recommendations.length > 0 ? (
+            <div className="flex flex-col gap-3 rounded-lg bg-neutral-900 px-4 py-3">
+              {recommendations.map((rec, i) => (
+                <div key={i}>
+                  <h2 className="text-sm font-semibold text-neutral-200">
+                    {rec.name?.trim() || "..."} recomendó esta canción
+                  </h2>
+                  {rec.reason?.trim() && (
+                    <p className="text-sm text-neutral-400">{rec.reason}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="rounded-lg bg-neutral-900 px-4 py-3 text-sm italic text-neutral-500">
+              Esta canción ya venía con la playlist.
+            </p>
+          )}
+
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={handleLike}
@@ -85,7 +106,7 @@ export default function HomePage() {
               onClick={() => setShowRecommend(true)}
               className="rounded-full border border-neutral-700 px-4 py-2 font-semibold hover:bg-neutral-800"
             >
-              ➕ Recomendar
+              ➕ Recomendá una canción vos
             </button>
           </div>
         </div>

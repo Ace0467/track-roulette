@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCachedPlaylistTracks } from "@/lib/spotify";
-import { getLikeCount } from "@/lib/redis";
+import { getLikeCount, getRecommendations } from "@/lib/redis";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +17,8 @@ export async function GET() {
     }
     const track = tracks[Math.floor(Math.random() * tracks.length)];
     const likes = await getLikeCount(track.id);
-    return NextResponse.json({ track, likes });
+    const recommendations = await getRecommendations(track.id);
+    return NextResponse.json({ track, likes, recommendations });
   } catch (err) {
     console.error(err);
     const message =
