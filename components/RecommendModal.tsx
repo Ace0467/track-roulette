@@ -82,7 +82,10 @@ export default function RecommendModal({
         </div>
 
         {success ? (
-          <p className="text-emerald-400">¡Gracias! Ya la agregamos al playlist.</p>
+          <p className="text-emerald-400">
+            ¡Gracias! Ya la agregamos al playlist. La canción que recomendaste ya entró en
+            circulación.
+          </p>
         ) : (
           <>
             <input
