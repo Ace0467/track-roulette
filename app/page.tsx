@@ -55,17 +55,26 @@ export default function HomePage() {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-6 text-center text-neutral-50">
         <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
-        <p className="max-w-sm text-neutral-400">
-          Para escuchar las canciones completas (no solo 30 segundos), iniciá sesión en Spotify antes de arrancar.
+
+        <div className="hidden max-w-sm flex-col items-center gap-3 sm:flex">
+          <p className="text-neutral-400">
+            Para escuchar las canciones completas (no solo 30 segundos), iniciá sesión en Spotify antes de arrancar.
+          </p>
+          <a
+            href="https://accounts.spotify.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-neutral-300 underline hover:text-neutral-100"
+          >
+            Iniciar sesión en Spotify
+          </a>
+        </div>
+
+        <p className="max-w-sm text-neutral-400 sm:hidden">
+          En el celular, Spotify solo deja escuchar 30 segundos de cada canción desde el navegador — abrí la app de
+          Spotify si querés escuchar el tema completo.
         </p>
-        <a
-          href="https://accounts.spotify.com/login"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-neutral-300 underline hover:text-neutral-100"
-        >
-          Iniciar sesión en Spotify
-        </a>
+
         <button
           onClick={() => setStarted(true)}
           className="rounded-full bg-emerald-500 px-6 py-2 font-semibold text-black"
