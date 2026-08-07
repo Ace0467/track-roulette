@@ -96,7 +96,7 @@ export default function HomePage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-6 text-neutral-50">
+    <main className="flex min-h-screen flex-col items-center justify-center gap-3 bg-neutral-950 p-6 text-neutral-50">
       <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
       <button
         onClick={() => setShowAbout(true)}
