@@ -19,7 +19,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           <p>
             Con "Recomendá una canción vos" podés buscar un tema y agregarlo de verdad a la
             playlist — a partir de ahí, esa canción también puede salir sorteada para otros
-            visitantes. Podés contar por qué la compartís, y eso se muestra junto al tema cuando
+            visitantes. Podés contar por qué la recomendás, y eso se muestra junto al tema cuando
             le salga a alguien.
           </p>
         </div>
