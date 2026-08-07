@@ -1,14 +1,17 @@
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET() {
   const clientId = process.env.SPOTIFY_CLIENT_ID;
+  const redirectUri = process.env.SPOTIFY_REDIRECT_URI;
   if (!clientId) {
     return NextResponse.json({ error: "SPOTIFY_CLIENT_ID no configurado" }, { status: 500 });
   }
+  if (!redirectUri) {
+    return NextResponse.json({ error: "SPOTIFY_REDIRECT_URI no configurado" }, { status: 500 });
+  }
 
-  const url = new URL(request.url);
-  const redirectUri = `${url.origin}/api/auth/spotify/callback`;
-  const scope = "playlist-modify-public playlist-modify-private";
+  const scope =
+    "playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private";
 
   const params = new URLSearchParams({
     response_type: "code",

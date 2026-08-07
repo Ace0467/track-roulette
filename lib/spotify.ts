@@ -16,7 +16,7 @@ function basicAuthHeader(): string {
   return Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
 }
 
-/** Client Credentials flow — solo lectura (playlist, búsqueda). */
+/** Client Credentials flow — solo lectura del buscador (Spotify ya no permite leer playlists con esto). */
 export async function getClientCredentialsToken(): Promise<string> {
   if (clientCredentialsCache && clientCredentialsCache.expiresAt > Date.now()) {
     return clientCredentialsCache.token;
@@ -84,24 +84,29 @@ function simplifyTrack(track: any): SpotifyTrack {
 }
 
 async function fetchPlaylistTracks(playlistId: string): Promise<SpotifyTrack[]> {
-  const token = await getClientCredentialsToken();
+  // Spotify ya no permite leer el contenido de un playlist con Client Credentials
+  // (ni siquiera si es público) — exige un token de usuario autenticado.
+  const token = await getOwnerAccessToken();
   const tracks: SpotifyTrack[] = [];
+  // "/tracks" (legado) devuelve 403 en la práctica; "/items" es el reemplazo vigente.
   let url: string | null =
-    `${API_URL}/playlists/${playlistId}/tracks?limit=100&fields=` +
-    encodeURIComponent("next,items(track(id,uri,name,artists(name),album(name,images)))");
+    `${API_URL}/playlists/${playlistId}/items?limit=100&fields=` +
+    encodeURIComponent("next,items(item(id,uri,name,type,artists(name),album(name,images)))");
 
   while (url) {
-    const res = await fetch(url, {
+    const res: Response = await fetch(url, {
       headers: { Authorization: `Bearer ${token}` },
       cache: "no-store",
     });
     if (!res.ok) {
       throw new Error(`No se pudo leer el playlist de Spotify: ${res.status}`);
     }
-    const data = await res.json();
-    for (const item of data.items) {
-      if (item.track?.id) {
-        tracks.push(simplifyTrack(item.track));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const data: { items: any[]; next: string | null } = await res.json();
+    for (const entry of data.items) {
+      const item = entry.item;
+      if (item?.type === "track" && item.id) {
+        tracks.push(simplifyTrack(item));
       }
     }
     url = data.next;
@@ -142,7 +147,8 @@ export async function searchTracks(query: string, limit = 8): Promise<SpotifyTra
 
 export async function addTrackToPlaylist(playlistId: string, trackUri: string): Promise<void> {
   const token = await getOwnerAccessToken();
-  const res = await fetch(`${API_URL}/playlists/${playlistId}/tracks`, {
+  // "/tracks" (legado) devuelve 403 en la práctica; "/items" es el reemplazo vigente.
+  const res = await fetch(`${API_URL}/playlists/${playlistId}/items`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,

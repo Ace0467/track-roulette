@@ -29,11 +29,14 @@ export async function GET(request: Request) {
 
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+  const redirectUri = process.env.SPOTIFY_REDIRECT_URI;
   if (!clientId || !clientSecret) {
     return htmlResponse(`<p>Faltan SPOTIFY_CLIENT_ID / SPOTIFY_CLIENT_SECRET en el servidor.</p>`);
   }
+  if (!redirectUri) {
+    return htmlResponse(`<p>Falta SPOTIFY_REDIRECT_URI en el servidor.</p>`);
+  }
 
-  const redirectUri = `${url.origin}/api/auth/spotify/callback`;
   const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
 
   const res = await fetch("https://accounts.spotify.com/api/token", {

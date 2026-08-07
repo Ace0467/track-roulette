@@ -20,6 +20,10 @@ export async function GET() {
     return NextResponse.json({ track, likes });
   } catch (err) {
     console.error(err);
-    return NextResponse.json({ error: "No se pudo elegir una canción" }, { status: 502 });
+    const message =
+      err instanceof Error && err.message.includes("SPOTIFY_REFRESH_TOKEN")
+        ? "El sitio todavía no está autorizado con Spotify (visitá /api/auth/spotify/login como dueño del sitio)."
+        : "No se pudo elegir una canción";
+    return NextResponse.json({ error: message }, { status: 502 });
   }
 }
