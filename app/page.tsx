@@ -120,9 +120,9 @@ export default function HomePage() {
                   <h2 className="text-sm font-semibold text-neutral-200">
                     {rec.name?.trim() || "..."} recomendó esta canción
                   </h2>
-                  {rec.reason?.trim() && (
-                    <p className="text-sm text-neutral-400">&quot;{rec.reason}&quot;</p>
-                  )}
+                  <p className="text-sm text-neutral-400">
+                    {rec.reason?.trim() ? <>&quot;{rec.reason}&quot;</> : "..."}
+                  </p>
                 </div>
               ))}
             </div>
