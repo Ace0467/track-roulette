@@ -73,7 +73,7 @@ export default function RecommendModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
-      <div className="flex w-full max-w-md flex-col gap-4 rounded-2xl bg-neutral-900 p-6 text-neutral-50">
+      <div className="flex w-full max-w-md flex-col gap-4 rounded-2xl bg-neutral-900 p-6 text-left text-neutral-50">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold">Recomendar canción</h2>
           <button onClick={onClose} aria-label="Cerrar" className="text-neutral-400 hover:text-white">
