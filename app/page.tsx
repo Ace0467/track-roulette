@@ -54,6 +54,15 @@ export default function HomePage() {
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-6 text-neutral-50">
       <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
 
+      <a
+        href="https://accounts.spotify.com/login"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm text-neutral-400 underline hover:text-neutral-200"
+      >
+        ¿No se reproduce la canción completa? Iniciá sesión en Spotify
+      </a>
+
       {loading && <p className="text-neutral-400">Girando la ruleta...</p>}
       {error && <p className="text-red-400">{error}</p>}
 
@@ -67,15 +76,6 @@ export default function HomePage() {
               className="aspect-square w-full rounded-xl object-cover"
             />
           )}
-
-          <div className="flex flex-col">
-            <p className="font-semibold text-neutral-50">{track.name}</p>
-            <p className="text-sm text-neutral-400">{track.artists.join(", ")}</p>
-            <p className="text-sm text-neutral-500">
-              {track.albumName}
-              {track.albumYear ? ` · ${track.albumYear}` : ""}
-            </p>
-          </div>
 
           <iframe
             title={`${track.name} — ${track.artists.join(", ")}`}

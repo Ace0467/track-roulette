@@ -5,7 +5,6 @@ export interface SpotifyTrack {
   artists: string[];
   albumName: string;
   albumImage: string | null;
-  albumYear: string | null;
 }
 
 export interface Recommendation {

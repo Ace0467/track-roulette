@@ -80,7 +80,6 @@ function simplifyTrack(track: any): SpotifyTrack {
     artists: (track.artists ?? []).map((a: any) => a.name),
     albumName: track.album?.name ?? "",
     albumImage: track.album?.images?.[0]?.url ?? null,
-    albumYear: track.album?.release_date ? track.album.release_date.slice(0, 4) : null,
   };
 }
 
@@ -92,7 +91,7 @@ async function fetchPlaylistTracks(playlistId: string): Promise<SpotifyTrack[]> 
   // "/tracks" (legado) devuelve 403 en la práctica; "/items" es el reemplazo vigente.
   let url: string | null =
     `${API_URL}/playlists/${playlistId}/items?limit=100&fields=` +
-    encodeURIComponent("next,items(item(id,uri,name,type,artists(name),album(name,images,release_date)))");
+    encodeURIComponent("next,items(item(id,uri,name,type,artists(name),album(name,images)))");
 
   while (url) {
     const res: Response = await fetch(url, {
