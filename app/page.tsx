@@ -5,6 +5,7 @@ import type { Recommendation, SpotifyTrack } from "@/lib/types";
 import RecommendModal from "@/components/RecommendModal";
 
 export default function HomePage() {
+  const [started, setStarted] = useState(false);
   const [track, setTrack] = useState<SpotifyTrack | null>(null);
   const [likes, setLikes] = useState(0);
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
@@ -31,8 +32,8 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    fetchRandomTrack();
-  }, [fetchRandomTrack]);
+    if (started) fetchRandomTrack();
+  }, [started, fetchRandomTrack]);
 
   async function handleLike() {
     if (!track || liking) return;
@@ -50,18 +51,34 @@ export default function HomePage() {
     }
   }
 
+  if (!started) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-6 text-center text-neutral-50">
+        <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
+        <p className="max-w-sm text-neutral-400">
+          Para escuchar las canciones completas (no solo 30 segundos), iniciá sesión en Spotify antes de arrancar.
+        </p>
+        <a
+          href="https://accounts.spotify.com/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-neutral-300 underline hover:text-neutral-100"
+        >
+          Iniciar sesión en Spotify
+        </a>
+        <button
+          onClick={() => setStarted(true)}
+          className="rounded-full bg-emerald-500 px-6 py-2 font-semibold text-black"
+        >
+          Empezar
+        </button>
+      </main>
+    );
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-6 text-neutral-50">
       <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
-
-      <a
-        href="https://accounts.spotify.com/login"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sm text-neutral-400 underline hover:text-neutral-200"
-      >
-        ¿No se reproduce la canción completa? Iniciá sesión en Spotify
-      </a>
 
       {loading && <p className="text-neutral-400">Girando la ruleta...</p>}
       {error && <p className="text-red-400">{error}</p>}
