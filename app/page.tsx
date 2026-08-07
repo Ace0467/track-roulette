@@ -93,13 +93,13 @@ export default function HomePage() {
       {error && <p className="text-red-400">{error}</p>}
 
       {track && !loading && (
-        <div className="flex w-full max-w-xs flex-col gap-4 sm:max-w-sm">
+        <div className="flex w-full max-w-sm flex-col gap-4">
           {track.albumImage && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={track.albumImage}
               alt={`Tapa de ${track.albumName}`}
-              className="aspect-square w-full rounded-xl object-cover"
+              className="aspect-square w-2/3 self-center rounded-xl object-cover"
             />
           )}
 
