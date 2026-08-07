@@ -121,7 +121,7 @@ export default function HomePage() {
                     {rec.name?.trim() || "..."} recomendó esta canción
                   </h2>
                   {rec.reason?.trim() && (
-                    <p className="text-sm text-neutral-400">{rec.reason}</p>
+                    <p className="text-sm text-neutral-400">&quot;{rec.reason}&quot;</p>
                   )}
                 </div>
               ))}
