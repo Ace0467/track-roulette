@@ -3,9 +3,11 @@
 import { useCallback, useEffect, useState } from "react";
 import type { Recommendation, SpotifyTrack } from "@/lib/types";
 import RecommendModal from "@/components/RecommendModal";
+import AboutModal from "@/components/AboutModal";
 
 export default function HomePage() {
   const [started, setStarted] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
   const [track, setTrack] = useState<SpotifyTrack | null>(null);
   const [likes, setLikes] = useState(0);
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
@@ -55,6 +57,12 @@ export default function HomePage() {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-6 text-center text-neutral-50">
         <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
+        <button
+          onClick={() => setShowAbout(true)}
+          className="text-sm text-neutral-400 underline hover:text-neutral-200"
+        >
+          ¿Qué es esto y para qué sirve?
+        </button>
 
         <div className="hidden max-w-sm flex-col items-center gap-3 sm:flex">
           <p className="text-neutral-400">
@@ -81,6 +89,8 @@ export default function HomePage() {
         >
           Empezar
         </button>
+
+        {showAbout && <AboutModal onClose={() => setShowAbout(false)} />}
       </main>
     );
   }
@@ -88,6 +98,12 @@ export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-6 text-neutral-50">
       <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
+      <button
+        onClick={() => setShowAbout(true)}
+        className="text-sm text-neutral-400 underline hover:text-neutral-200"
+      >
+        ¿Qué es esto y para qué sirve?
+      </button>
 
       {loading && <p className="text-neutral-400">Girando la ruleta...</p>}
       {error && <p className="text-red-400">{error}</p>}
@@ -157,6 +173,8 @@ export default function HomePage() {
       {showRecommend && (
         <RecommendModal onClose={() => setShowRecommend(false)} onSuccess={() => setShowRecommend(false)} />
       )}
+
+      {showAbout && <AboutModal onClose={() => setShowAbout(false)} />}
     </main>
   );
 }
