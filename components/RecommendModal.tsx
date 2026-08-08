@@ -82,7 +82,7 @@ export default function RecommendModal({
         </div>
 
         {success ? (
-          <p className="text-emerald-400">
+          <p className="text-[#FF4400]">
             ¡Gracias! Ya la agregamos al playlist. La canción que recomendaste ya entró en
             circulación.
           </p>
@@ -96,7 +96,7 @@ export default function RecommendModal({
                 setSelected(null);
               }}
               placeholder="Buscá una canción..."
-              className="rounded-lg bg-neutral-800 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+              className="rounded-lg bg-neutral-800 px-3 py-2 outline-none focus:ring-2 focus:ring-[#FF4400]"
             />
 
             {searching && <p className="text-sm text-neutral-400">Buscando...</p>}
@@ -127,14 +127,14 @@ export default function RecommendModal({
                   onChange={(e) => setName(e.target.value)}
                   maxLength={MAX_NAME_LENGTH}
                   placeholder="Tu nombre"
-                  className="rounded-lg bg-neutral-800 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="rounded-lg bg-neutral-800 px-3 py-2 outline-none focus:ring-2 focus:ring-[#FF4400]"
                 />
                 <textarea
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
                   maxLength={MAX_REASON_LENGTH}
                   placeholder="¿Por qué la compartís? (opcional)"
-                  className="min-h-[100px] rounded-lg bg-neutral-800 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="min-h-[100px] rounded-lg bg-neutral-800 px-3 py-2 outline-none focus:ring-2 focus:ring-[#FF4400]"
                 />
                 <p className="text-right text-xs text-neutral-500">
                   {reason.length}/{MAX_REASON_LENGTH}
@@ -143,7 +143,7 @@ export default function RecommendModal({
                 <button
                   onClick={handleSubmit}
                   disabled={submitting || !name.trim()}
-                  className="rounded-full bg-emerald-500 px-4 py-2 font-semibold text-black disabled:opacity-50"
+                  className="rounded-full bg-[#FF4400] px-4 py-2 font-semibold text-black disabled:opacity-50"
                 >
                   {submitting ? "Agregando..." : "Agregar al playlist"}
                 </button>

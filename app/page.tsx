@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import type { Recommendation, SpotifyTrack } from "@/lib/types";
 import RecommendModal from "@/components/RecommendModal";
 import AboutModal from "@/components/AboutModal";
+import SpotifyPlayer from "@/components/SpotifyPlayer";
 
 export default function HomePage() {
   const [started, setStarted] = useState(false);
@@ -55,7 +56,7 @@ export default function HomePage() {
 
   if (!started) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-6 text-center text-neutral-50">
+      <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-8 text-center text-neutral-50">
         <div className="flex flex-col items-center gap-1.5">
           <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
           <button
@@ -87,7 +88,7 @@ export default function HomePage() {
 
         <button
           onClick={() => setStarted(true)}
-          className="rounded-full bg-emerald-500 px-6 py-2 font-semibold text-black"
+          className="rounded-full bg-[#FF4400] px-6 py-2 font-semibold text-black"
         >
           Empezar
         </button>
@@ -98,7 +99,7 @@ export default function HomePage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-3 bg-neutral-950 p-6 text-neutral-50">
+    <main className="flex min-h-screen flex-col items-center justify-center gap-3 bg-neutral-950 p-8 text-neutral-50">
       <div className="flex flex-col items-center gap-1.5">
         <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
         <button
@@ -119,22 +120,19 @@ export default function HomePage() {
             <img
               src={track.albumImage}
               alt={`Tapa de ${track.albumName}`}
-              className="aspect-square w-2/3 self-center rounded-xl object-cover"
+              className="aspect-square w-full rounded-xl object-cover"
             />
           )}
 
-          <iframe
-            title={`${track.name} — ${track.artists.join(", ")}`}
-            style={{ borderRadius: 12 }}
-            src={`https://open.spotify.com/embed/track/${track.id}?utm_source=generator&theme=0`}
-            width="100%"
-            height="152"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
+          <SpotifyPlayer
+            trackUri={track.uri}
+            trackId={track.id}
+            trackName={track.name}
+            artists={track.artists.join(", ")}
           />
 
           {recommendations.length > 0 ? (
-            <div className="flex flex-col gap-3 rounded-lg bg-neutral-900 px-4 py-3">
+            <div className="flex flex-col gap-3 rounded-lg bg-neutral-900 px-6 py-5">
               {recommendations.map((rec, i) => (
                 <div key={i}>
                   <h2 className="text-sm font-semibold text-neutral-200">
@@ -145,7 +143,7 @@ export default function HomePage() {
               ))}
             </div>
           ) : (
-            <p className="rounded-lg bg-neutral-900 px-4 py-3 text-sm italic text-neutral-500">
+            <p className="rounded-lg bg-neutral-900 px-6 py-5 text-sm italic text-neutral-500">
               Esta canción ya venía con la playlist, pero alguien ya te la va a recomendar.
             </p>
           )}
@@ -154,19 +152,19 @@ export default function HomePage() {
             <button
               onClick={handleLike}
               disabled={liking}
-              className="rounded-full bg-emerald-500 px-4 py-2 font-semibold text-black disabled:opacity-50"
+              className="rounded-full bg-[#FF4400] px-5 py-2.5 font-semibold text-black disabled:opacity-50"
             >
               ❤️ Me gusta ({likes})
             </button>
             <button
               onClick={fetchRandomTrack}
-              className="rounded-full border border-neutral-700 px-4 py-2 font-semibold hover:bg-neutral-800"
+              className="rounded-full border border-neutral-700 px-5 py-2.5 font-semibold hover:bg-neutral-800"
             >
               🎲 Otra canción
             </button>
             <button
               onClick={() => setShowRecommend(true)}
-              className="rounded-full border border-neutral-700 px-4 py-2 font-semibold hover:bg-neutral-800"
+              className="rounded-full border border-neutral-700 px-5 py-2.5 font-semibold hover:bg-neutral-800"
             >
               ➕ Recomendá una canción vos
             </button>
