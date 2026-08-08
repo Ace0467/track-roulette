@@ -99,7 +99,15 @@ export default function HomePage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-3 bg-neutral-950 p-8 text-neutral-50">
+    <main className="relative isolate flex min-h-screen flex-col items-center justify-center gap-3 overflow-hidden bg-neutral-950 p-8 text-neutral-50">
+      {track?.albumImage && (
+        <div
+          className="absolute inset-0 -z-10 scale-110 bg-cover bg-center blur-2xl"
+          style={{ backgroundImage: `url(${track.albumImage})` }}
+        />
+      )}
+      <div className="absolute inset-0 -z-10 bg-black/[87%]" />
+
       <div className="flex flex-col items-center gap-1.5">
         <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
         <button
