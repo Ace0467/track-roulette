@@ -106,7 +106,7 @@ export default function HomePage() {
           style={{ backgroundImage: `url(${track.albumImage})` }}
         />
       )}
-      <div className="absolute inset-0 -z-10 bg-black/[87%]" />
+      <div className="absolute inset-0 -z-10 bg-black/50" />
 
       <div className="flex flex-col items-center gap-1.5">
         <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
