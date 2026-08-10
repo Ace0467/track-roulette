@@ -163,26 +163,28 @@ export default function HomePage() {
             </p>
           )}
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col items-start gap-3">
             <button
               onClick={() => setShowRecommend(true)}
               className="rounded-full bg-[#FF4400] px-5 py-2.5 text-sm font-semibold text-black transition-colors duration-300 hover:bg-[#E63D00]"
             >
               ➕ Recomendá una canción
             </button>
-            <button
-              onClick={fetchRandomTrack}
-              className="rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-semibold transition-colors duration-300 hover:bg-neutral-800"
-            >
-              🎲 Otra canción
-            </button>
-            <button
-              onClick={handleLike}
-              disabled={liking}
-              className="rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-semibold transition-colors duration-300 hover:bg-neutral-800 disabled:opacity-50"
-            >
-              ❤️ Me gusta ({likes})
-            </button>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={fetchRandomTrack}
+                className="rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-semibold transition-colors duration-300 hover:bg-neutral-800"
+              >
+                🎲 Otra canción
+              </button>
+              <button
+                onClick={handleLike}
+                disabled={liking}
+                className="rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-semibold transition-colors duration-300 hover:bg-neutral-800 disabled:opacity-50"
+              >
+                ❤️ Me gusta ({likes})
+              </button>
+            </div>
           </div>
         </div>
       )}
