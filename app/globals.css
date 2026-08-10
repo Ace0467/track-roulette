@@ -7,3 +7,18 @@ body {
   padding: 0;
   margin: 0;
 }
+
+@keyframes marquee {
+  0%,
+  16% {
+    transform: translateX(0);
+  }
+  84%,
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 12s linear infinite;
+}

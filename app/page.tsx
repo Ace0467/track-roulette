@@ -111,6 +111,7 @@ export default function HomePage() {
       )}
       <div className="absolute inset-0 -z-10 bg-black/[66%]" />
 
+      <div className="flex w-full max-w-sm flex-col items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur-xl md:max-w-lg">
       <div className="flex flex-col items-center gap-1.5">
         <h1 className="text-[2.0625rem] font-bold tracking-tight">Track Roulette</h1>
         <button
@@ -128,7 +129,7 @@ export default function HomePage() {
       {error && <p className="text-red-400">{error}</p>}
 
       {track && !loading && (
-        <div className="flex w-full max-w-sm flex-col gap-4">
+        <div className="flex w-full flex-col gap-4">
           {track.albumImage && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -185,6 +186,7 @@ export default function HomePage() {
           </div>
         </div>
       )}
+      </div>
 
       {showRecommend && (
         <RecommendModal onClose={() => setShowRecommend(false)} onSuccess={() => setShowRecommend(false)} />

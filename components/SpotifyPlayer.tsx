@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import MarqueeText from "./MarqueeText";
 
 interface PlaybackUpdateData {
   isPaused: boolean;
@@ -126,9 +127,9 @@ export default function SpotifyPlayer({
         aria-hidden
       />
 
-      <div className="flex flex-col items-start text-left">
-        <p className="truncate font-semibold text-neutral-50">{trackName}</p>
-        <p className="truncate text-sm text-neutral-400">{artists}</p>
+      <div className="flex w-full flex-col items-start text-left">
+        <MarqueeText text={trackName} className="font-semibold text-neutral-50" />
+        <MarqueeText text={artists} className="text-sm text-neutral-400" />
       </div>
 
       <div className="grid grid-cols-[auto_1fr_auto] items-center justify-between gap-x-3 gap-y-1">
