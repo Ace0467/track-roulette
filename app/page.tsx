@@ -58,11 +58,14 @@ export default function HomePage() {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-neutral-950 p-8 text-center text-neutral-50">
         <div className="flex flex-col items-center gap-1.5">
-          <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
+          <h1 className="text-[2.0625rem] font-bold tracking-tight">Track Roulette</h1>
           <button
             onClick={() => setShowAbout(true)}
-            className="text-sm text-neutral-400 underline hover:text-neutral-200"
+            className="flex items-center gap-1.5 rounded-full bg-neutral-800 px-3 py-1 text-sm text-neutral-300 hover:bg-neutral-700 hover:text-neutral-100"
           >
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden>
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+            </svg>
             ¿Qué es esto y para qué sirve?
           </button>
         </div>
@@ -106,14 +109,17 @@ export default function HomePage() {
           style={{ backgroundImage: `url(${track.albumImage})` }}
         />
       )}
-      <div className="absolute inset-0 -z-10 bg-black/50" />
+      <div className="absolute inset-0 -z-10 bg-black/[66%]" />
 
       <div className="flex flex-col items-center gap-1.5">
-        <h1 className="text-3xl font-bold tracking-tight">Track Roulette</h1>
+        <h1 className="text-[2.0625rem] font-bold tracking-tight">Track Roulette</h1>
         <button
           onClick={() => setShowAbout(true)}
-          className="text-sm text-neutral-400 underline hover:text-neutral-200"
+          className="flex items-center gap-1.5 rounded-full bg-neutral-800 px-3 py-1 text-sm text-neutral-300 hover:bg-neutral-700 hover:text-neutral-100"
         >
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden>
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+          </svg>
           ¿Qué es esto y para qué sirve?
         </button>
       </div>
@@ -158,23 +164,23 @@ export default function HomePage() {
 
           <div className="flex flex-wrap items-center gap-3">
             <button
-              onClick={handleLike}
-              disabled={liking}
-              className="rounded-full bg-[#FF4400] px-5 py-2.5 font-semibold text-black disabled:opacity-50"
+              onClick={() => setShowRecommend(true)}
+              className="rounded-full bg-[#FF4400] px-5 py-2.5 font-semibold text-black"
             >
-              ❤️ Me gusta ({likes})
+              ➕ Recomendá una canción vos
             </button>
             <button
               onClick={fetchRandomTrack}
-              className="rounded-full border border-neutral-700 px-5 py-2.5 font-semibold hover:bg-neutral-800"
+              className="rounded-full bg-neutral-900 px-5 py-2.5 font-semibold hover:bg-neutral-800"
             >
               🎲 Otra canción
             </button>
             <button
-              onClick={() => setShowRecommend(true)}
-              className="rounded-full border border-neutral-700 px-5 py-2.5 font-semibold hover:bg-neutral-800"
+              onClick={handleLike}
+              disabled={liking}
+              className="rounded-full bg-neutral-900 px-5 py-2.5 font-semibold hover:bg-neutral-800 disabled:opacity-50"
             >
-              ➕ Recomendá una canción vos
+              ❤️ Me gusta ({likes})
             </button>
           </div>
         </div>
