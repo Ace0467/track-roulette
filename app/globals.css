@@ -23,7 +23,23 @@ body {
   animation: marquee 12s linear infinite;
 }
 
+/* Mismos cortes (0/16/84/100%) que @keyframes marquee, para que el fade
+   izquierdo solo aparezca una vez que el texto arranca a moverse (no
+   durante la pausa inicial, cuando el arranque del título está completo
+   a la vista). El fade derecho queda siempre activo. */
+@keyframes marquee-mask {
+  0%,
+  16% {
+    mask-image: linear-gradient(to right, black, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, black, black 92%, transparent);
+  }
+  16.01%,
+  100% {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+}
+
 .marquee-fade {
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  animation: marquee-mask 12s linear infinite;
 }
