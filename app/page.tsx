@@ -61,7 +61,7 @@ export default function HomePage() {
           <h1 className="text-[2.0625rem] font-bold tracking-tight">Track Roulette</h1>
           <button
             onClick={() => setShowAbout(true)}
-            className="flex items-center gap-1.5 rounded-full bg-neutral-800 px-3 py-1 text-sm text-neutral-300 hover:bg-neutral-700 hover:text-neutral-100"
+            className="flex items-center gap-1.5 rounded-full bg-neutral-800 px-3 py-1 text-sm text-neutral-300 transition-colors duration-300 hover:bg-neutral-700 hover:text-neutral-100"
           >
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden>
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
@@ -78,7 +78,7 @@ export default function HomePage() {
             href="https://accounts.spotify.com/login"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-neutral-300 underline hover:text-neutral-100"
+            className="text-sm text-neutral-300 underline transition-colors duration-300 hover:text-neutral-100"
           >
             Iniciar sesión en Spotify
           </a>
@@ -115,7 +115,7 @@ export default function HomePage() {
         <h1 className="text-[2.0625rem] font-bold tracking-tight">Track Roulette</h1>
         <button
           onClick={() => setShowAbout(true)}
-          className="flex items-center gap-1.5 rounded-full bg-neutral-800 px-3 py-1 text-sm text-neutral-300 hover:bg-neutral-700 hover:text-neutral-100"
+          className="flex items-center gap-1.5 rounded-full bg-neutral-800 px-3 py-1 text-sm text-neutral-300 transition-colors duration-300 hover:bg-neutral-700 hover:text-neutral-100"
         >
           <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden>
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
@@ -165,20 +165,20 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => setShowRecommend(true)}
-              className="rounded-full bg-[#FF4400] px-5 py-2.5 font-semibold text-black"
+              className="rounded-full bg-[#FF4400] px-5 py-2.5 font-semibold text-black transition-colors duration-300 hover:bg-[#E63D00]"
             >
               ➕ Recomendá una canción
             </button>
             <button
               onClick={fetchRandomTrack}
-              className="rounded-full bg-neutral-900 px-5 py-2.5 font-semibold hover:bg-neutral-800"
+              className="rounded-full bg-neutral-900 px-5 py-2.5 font-semibold transition-colors duration-300 hover:bg-neutral-800"
             >
               🎲 Otra canción
             </button>
             <button
               onClick={handleLike}
               disabled={liking}
-              className="rounded-full bg-neutral-900 px-5 py-2.5 font-semibold hover:bg-neutral-800 disabled:opacity-50"
+              className="rounded-full bg-neutral-900 px-5 py-2.5 font-semibold transition-colors duration-300 hover:bg-neutral-800 disabled:opacity-50"
             >
               ❤️ Me gusta ({likes})
             </button>

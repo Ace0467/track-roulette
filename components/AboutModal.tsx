@@ -6,7 +6,11 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
       <div className="flex w-full max-w-md flex-col gap-4 rounded-2xl bg-neutral-900 p-6 text-left text-neutral-50">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold">¿Qué es esto?</h2>
-          <button onClick={onClose} aria-label="Cerrar" className="text-neutral-400 hover:text-white">
+          <button
+            onClick={onClose}
+            aria-label="Cerrar"
+            className="text-neutral-400 transition-colors duration-300 hover:text-white"
+          >
             ✕
           </button>
         </div>

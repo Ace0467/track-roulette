@@ -76,7 +76,11 @@ export default function RecommendModal({
       <div className="flex w-full max-w-md flex-col gap-4 rounded-2xl bg-neutral-900 p-6 text-left text-neutral-50">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold">Recomendar canción</h2>
-          <button onClick={onClose} aria-label="Cerrar" className="text-neutral-400 hover:text-white">
+          <button
+            onClick={onClose}
+            aria-label="Cerrar"
+            className="text-neutral-400 transition-colors duration-300 hover:text-white"
+          >
             ✕
           </button>
         </div>
@@ -111,7 +115,7 @@ export default function RecommendModal({
                         setQuery(`${t.name} — ${t.artists.join(", ")}`);
                         setResults([]);
                       }}
-                      className="w-full rounded-lg px-3 py-2 text-left hover:bg-neutral-800"
+                      className="w-full rounded-lg px-3 py-2 text-left transition-colors duration-300 hover:bg-neutral-800"
                     >
                       {t.name} — {t.artists.join(", ")}
                     </button>

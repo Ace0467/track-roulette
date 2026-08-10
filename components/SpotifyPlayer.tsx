@@ -174,7 +174,7 @@ export default function SpotifyPlayer({
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Abrir en Spotify"
-          className="flex shrink-0 items-center justify-center rounded-full text-neutral-400 outline-none hover:text-[#1DB954] focus-visible:ring-2 focus-visible:ring-[#FF4400] focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
+          className="flex shrink-0 items-center justify-center rounded-full text-neutral-400 outline-none transition-colors duration-300 hover:text-[#1DB954] focus-visible:ring-2 focus-visible:ring-[#FF4400] focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
         >
           <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden>
             <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24 0-.359-.12-.599-.24-1.68-.998-3.72-1.558-5.939-1.558-1.32 0-2.76.24-3.96.6-.241.12-.361.12-.481.12-.4 0-.72-.32-.72-.719 0-.4.2-.68.62-.8 1.44-.4 2.94-.6 4.56-.6 2.52 0 4.8.64 6.72 1.76.32.16.48.4.48.759 0 .381-.28.638-.681.638zm1.44-3.021c-.301 0-.481-.12-.72-.24-1.921-1.16-4.8-1.939-7.681-1.939-1.44 0-2.939.24-4.26.6-.241.06-.361.12-.601.12-.481 0-.881-.4-.881-.881 0-.48.24-.78.72-.9 1.62-.481 3.3-.719 5.1-.719 3.12 0 6.359.66 8.72 2.14.34.199.6.499.6.958 0 .48-.36.86-.98.86zm1.68-3.541c-.3 0-.5-.08-.72-.2-2.26-1.34-5.6-2.08-8.858-2.08-1.68 0-3.36.28-4.94.72-.2.06-.42.14-.679.14-.581 0-1.021-.46-1.021-1.041 0-.6.3-.98.86-1.14 1.9-.559 3.9-.899 6.32-.899 3.6 0 7.14.899 9.899 2.54.34.199.579.599.579 1.079 0 .6-.44 1.06-1.06 1.06" />
