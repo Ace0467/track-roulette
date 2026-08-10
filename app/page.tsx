@@ -167,7 +167,7 @@ export default function HomePage() {
               onClick={() => setShowRecommend(true)}
               className="rounded-full bg-[#FF4400] px-5 py-2.5 font-semibold text-black"
             >
-              ➕ Recomendá una canción vos
+              ➕ Recomendá una canción
             </button>
             <button
               onClick={fetchRandomTrack}
