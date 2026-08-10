@@ -102,7 +102,7 @@ export default function HomePage() {
   }
 
   return (
-    <main className="relative isolate flex min-h-screen flex-col items-center justify-center gap-3 overflow-hidden bg-neutral-950 p-8 text-neutral-50">
+    <main className="relative isolate flex min-h-screen flex-col items-center justify-center gap-3 overflow-hidden bg-neutral-950 p-4 text-neutral-50 sm:p-8">
       {track?.albumImage && (
         <div
           className="absolute inset-0 -z-10 scale-110 bg-cover bg-center blur-2xl"
@@ -111,7 +111,7 @@ export default function HomePage() {
       )}
       <div className="absolute inset-0 -z-10 bg-black/[66%]" />
 
-      <div className="flex w-full max-w-sm flex-col items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur-xl md:max-w-lg">
+      <div className="flex w-full max-w-sm flex-col items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl backdrop-blur-xl sm:p-8 md:max-w-lg">
       <div className="flex flex-col items-center gap-1.5">
         <h1 className="text-[2.0625rem] font-bold tracking-tight">Track Roulette</h1>
         <button
