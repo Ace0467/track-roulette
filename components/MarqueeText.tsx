@@ -18,7 +18,10 @@ export default function MarqueeText({ text, className }: { text: string; classNa
   }, [text]);
 
   return (
-    <div ref={containerRef} className="relative w-full overflow-hidden whitespace-nowrap">
+    <div
+      ref={containerRef}
+      className={`relative w-full overflow-hidden whitespace-nowrap ${overflowing ? "marquee-fade" : ""}`}
+    >
       {/* Copia invisible solo para medir si el texto real desborda el contenedor. */}
       <span ref={measureRef} className={`invisible absolute ${className ?? ""}`} aria-hidden>
         {text}
