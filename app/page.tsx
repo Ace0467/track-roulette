@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { Recommendation, SpotifyTrack } from "@/lib/types";
 import RecommendModal from "@/components/RecommendModal";
 import AboutModal from "@/components/AboutModal";
@@ -16,12 +16,19 @@ export default function HomePage() {
   const [error, setError] = useState<string | null>(null);
   const [liking, setLiking] = useState(false);
   const [showRecommend, setShowRecommend] = useState(false);
+  const trackRef = useRef<SpotifyTrack | null>(null);
+
+  useEffect(() => {
+    trackRef.current = track;
+  }, [track]);
 
   const fetchRandomTrack = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/random-track", { cache: "no-store" });
+      const excludeId = trackRef.current?.id;
+      const url = excludeId ? `/api/random-track?exclude=${encodeURIComponent(excludeId)}` : "/api/random-track";
+      const res = await fetch(url, { cache: "no-store" });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Error desconocido");
       setTrack(data.track);
