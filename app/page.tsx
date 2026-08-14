@@ -180,14 +180,14 @@ export default function HomePage() {
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={fetchRandomTrack}
-                className="rounded-full bg-neutral-900 px-5 py-2.5 text-xs font-semibold transition-colors duration-300 hover:bg-neutral-800 sm:text-sm"
+                className="rounded-full bg-neutral-900 px-5 py-2.5 text-[13px] font-semibold transition-colors duration-300 hover:bg-neutral-800 sm:text-sm"
               >
                 🎲 Otra canción
               </button>
               <button
                 onClick={handleLike}
                 disabled={liking}
-                className="rounded-full bg-neutral-900 px-5 py-2.5 text-xs font-semibold transition-colors duration-300 hover:bg-neutral-800 disabled:opacity-50 sm:text-sm"
+                className="rounded-full bg-neutral-900 px-5 py-2.5 text-[13px] font-semibold transition-colors duration-300 hover:bg-neutral-800 disabled:opacity-50 sm:text-sm"
               >
                 ❤️ Me gusta ({likes})
               </button>
