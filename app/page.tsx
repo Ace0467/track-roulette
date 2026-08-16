@@ -118,7 +118,7 @@ export default function HomePage() {
       )}
       <div className="absolute inset-0 -z-10 bg-black/[66%]" />
 
-      <div className="flex w-full max-w-sm flex-col items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl backdrop-blur-xl sm:p-8 md:max-w-lg">
+      <div className="flex w-full max-w-sm flex-col items-center gap-3 rounded-3xl border-[1.5px] border-white/30 bg-white/10 p-5 shadow-2xl backdrop-blur-2xl backdrop-saturate-150 sm:p-8 md:max-w-lg">
       <div className="flex flex-col items-center gap-1.5">
         <h1 className="text-[2.0625rem] font-bold tracking-tight">Track Roulette</h1>
         <button
